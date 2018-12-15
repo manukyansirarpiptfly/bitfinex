@@ -1,7 +1,4 @@
-import axios from 'axios';
 import types from './types';
-
-const PUBLIC_API = 'https://api.bitfinex.com/v2/';
 
 const setTrades = payload => ({
   type: types.SET_TRADES,
@@ -9,11 +6,24 @@ const setTrades = payload => ({
 });
 
 const getTrades = () => (dispatch, getState) => {
+  
+  let w = new WebSocket('wss://api.bitfinex.com/ws/2');
+  
+  w.onmessage = function (event) {
+    console.log(event.data);
+    dispatch(setTrades(event.data));
+  };
 
-  return axios.get(`${PUBLIC_API}trades/tBTCUSD/hist`)
-    .then(function(result){
-      dispatch(setTrades(result));
-    });
+  let msg = JSON.stringify({
+    event: 'subscribe',
+    channel: 'trades',
+    symbol: 'tBTCUSD'
+  });
+
+  w.onopen = function (event) {
+    w.send(msg);
+  };
+
 };
 
 export default {

@@ -1,7 +1,4 @@
-import axios from 'axios';
 import types from './types';
-
-const PUBLIC_API = 'https://api.bitfinex.com/v2/';
 
 const setBooks = payload => ({
   type: types.SET_BOOKS,
@@ -10,10 +7,22 @@ const setBooks = payload => ({
 
 const getBooks = () => (dispatch, getState) => {
   
-  return axios.get(`${PUBLIC_API}book/tBTCUSD/P0`)
-    .then(function(result){
-      dispatch(setBooks(result));
-    });
+  let w = new WebSocket('wss://api.bitfinex.com/ws/2');
+
+  w.onmessage = function (event) {
+    console.log(event.data);
+    dispatch(setBooks(event.data));
+  };
+
+  let msg = JSON.stringify({
+    event: 'subscribe',
+    channel: 'book',
+    symbol: 'tBTCUSD'
+  });
+
+  w.onopen = function (event) {
+    w.send(msg);
+  };
 };
 
 export default {
