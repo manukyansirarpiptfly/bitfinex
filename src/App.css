@@ -2,3 +2,13 @@
   display: flex;
   justify-content: space-around;
 }
+
+.Row {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+}
+
+.RowTitle {
+  font-weight: bold;
+}

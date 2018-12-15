@@ -18,10 +18,19 @@ class TradesContainer extends Component {
   render() {
     return (
       <div>
-        TradesContainer renders
   
+        <h2>TRADES</h2>
+        <div className='Row'>
+          <div className='RowTitle'> TIME </div>
+          <div className='RowTitle'>PRICE</div>
+          <div className='RowTitle'>AMOUNT</div>
+        </div>
         {this.props.trades && this.props.trades.length > 0 && this.props.trades[0].map((trade, index) => (
-          <p> {trade[0]}: {trade[1]}: {trade[2]}: {trade[3]}</p>
+          <div className='Row'>
+            <div>{trade[1]}</div>
+            <div>{trade[2]}</div>
+            <div>{trade[3]}</div>
+          </div>
         ))}
         
       </div>

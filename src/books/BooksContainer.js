@@ -18,10 +18,18 @@ class BooksContainer extends Component {
   render() {
       return (
         <div>
-          BooksContainer renders
-          
+          <h2>ORDER BOOK</h2>
+          <div className='Row'>
+            <div className='RowTitle'> PRICE </div>
+            <div className='RowTitle'>COUNT</div>
+            <div className='RowTitle'>AMOUNT</div>
+          </div>
           {this.props.books && this.props.books.length > 0 && this.props.books[0].map((book, index) => (
-            <p> {book[0]}: {book[1]}: {book[2]}</p>
+            <div className='Row'>
+              <div>{book[0]}</div>
+              <div>{book[1]}</div>
+              <div>{book[2]}</div>
+            </div>
           ))}
           
         </div>
