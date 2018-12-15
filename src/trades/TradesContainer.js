@@ -16,7 +16,6 @@ class TradesContainer extends Component {
   }
   
   render() {
-    debugger;
     return (
       <div>
         TradesContainer renders
