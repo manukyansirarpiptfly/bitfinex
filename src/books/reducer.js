@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
   
   switch (type) {
     
-    case types.GET_BOOKS:
+    case types.SET_BOOKS:
       return  [
         ...state, payload
       ];

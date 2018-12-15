@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   
   switch (type) {
-    case types.GET_TRADES:
+    case types.SET_TRADES:
       return  [
         ...state, payload
       ];

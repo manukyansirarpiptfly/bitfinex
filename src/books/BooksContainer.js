@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from "redux";
 
+import  getBooks  from './actions';
 
 class BooksContainer extends Component {
   
   constructor(props) {
     super(props);
     this.state = {};
-    
   }
   
   componentDidMount() {
-  
+    this.props.actions.getBooks();
   }
   
   render() {
@@ -24,4 +25,10 @@ class BooksContainer extends Component {
   
 }
 
-export default connect(({books}) => ({books}), null)(BooksContainer);
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(getBooks, dispatch) }
+}
+
+export default connect(({books}) => ({books}), mapDispatchToProps)(BooksContainer);
+
+
