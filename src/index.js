@@ -24,7 +24,8 @@ const configureStore = (preloadedState) => {
   return store
 };
 
-const store = configureStore({sad:'sad'});
+const store = configureStore();
+
 
 ReactDOM.render(
   <Provider store={store}>
