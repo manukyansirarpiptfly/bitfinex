@@ -19,6 +19,11 @@ class TradesContainer extends Component {
     return (
       <div>
         TradesContainer renders
+  
+        {this.props.trades && this.props.trades.length > 0 && this.props.trades[0].map((trade, index) => (
+          <p> {trade[0]}: {trade[1]}: {trade[2]}: {trade[3]}</p>
+        ))}
+        
       </div>
     );
   }

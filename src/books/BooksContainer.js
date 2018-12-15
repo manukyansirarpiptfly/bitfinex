@@ -19,10 +19,14 @@ class BooksContainer extends Component {
       return (
         <div>
           BooksContainer renders
+          
+          {this.props.books && this.props.books.length > 0 && this.props.books[0].map((book, index) => (
+            <p> {book[0]}: {book[1]}: {book[2]}</p>
+          ))}
+          
         </div>
       );
   }
-  
 }
 
 function mapDispatchToProps(dispatch) {

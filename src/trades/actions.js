@@ -10,8 +10,12 @@ const getTrades = () => (dispatch, getState) => {
   let w = new WebSocket('wss://api.bitfinex.com/ws/2');
   
   w.onmessage = function (event) {
-    console.log(event.data);
-    dispatch(setTrades(event.data));
+  
+    let data  = JSON.parse(event.data);
+  
+    if(Array.isArray(data)) {
+      dispatch(setTrades(data[1]));
+    }
   };
 
   let msg = JSON.stringify({
